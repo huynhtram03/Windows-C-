@@ -1,115 +1,168 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace Article10
+namespace Article11
 {
     public partial class Form1 : Form
     {
-        private string currentInput = "";   // Giá trị đang nhập
-        private double numberA = 0;         // Số A
-        private string operation = "";      // Toán tử (+, *)
+        decimal memory = 0;        // M+, M-, MR, MC
+        decimal workingMemory = 0; // Lưu A
+        string opr = "";           // Toán tử
 
         public Form1()
         {
             InitializeComponent();
-
-            // Gán sự kiện bấm nút
-            btn0.Click += Number_Click;
-            btn1.Click += Number_Click;
-            btn2.Click += Number_Click;
-            btn3.Click += Number_Click;
-
-            btnDot.Click += Dot_Click;
-
-            btnPlus.Click += Operation_Click;
-            btnMul.Click += Operation_Click;
-
-            btnEqual.Click += Equal_Click;
         }
 
-        // ======== Nhập số ========
-        private void Number_Click(object sender, EventArgs e)
+        // =================== Xử lý tất cả button ===================
+        private void Button_Click(object sender, EventArgs e)
         {
-            if (sender is Button btn)
+            Button bt = (Button)sender;
+
+            // ===== SỐ và DẤU CHẤM =====
+            if (char.IsDigit(bt.Text, 0) || bt.Text == ".")
             {
-                // Không cho nhập 2 số 0 đầu
-                if (currentInput == "0" && btn.Text == "0") return;
-                if (currentInput == "0" && btn.Text != "0") currentInput = "";
-
-                currentInput += btn.Text;
-                tbDisplay.Text = currentInput;
-            }
-        }
-
-        // ======== Nhập dấu chấm ========
-        private void Dot_Click(object sender, EventArgs e)
-        {
-            if (currentInput == "") currentInput = "0";
-
-            if (!currentInput.Contains("."))
-            {
-                currentInput += ".";
-                tbDisplay.Text = currentInput;
-            }
-        }
-
-        // ======== Chọn toán tử ========
-        private void Operation_Click(object sender, EventArgs e)
-        {
-            if (currentInput == "")
-            {
-                tbDisplay.Text = "ERROR";
-                return;
-            }
-
-            if (double.TryParse(currentInput, out numberA))
-            {
-                if (sender is Button btn)
+                if (bt.Text == ".")
                 {
-                    operation = btn.Text;   // "+" hoặc "*"
-                    currentInput = "";      // chuẩn bị nhập số B
+                    if (txtDisplay.Text == "") txtDisplay.Text = "0";
+                    if (txtDisplay.Text.Contains(".")) return;
                 }
-            }
-            else
-            {
-                tbDisplay.Text = "ERROR";
-                currentInput = "";
-            }
-        }
 
-        // ======== Nhấn nút = ========
-        private void Equal_Click(object sender, EventArgs e)
-        {
-            if (currentInput == "") return;
-
-            if (!double.TryParse(currentInput, out double numberB))
-            {
-                tbDisplay.Text = "ERROR";
+                txtDisplay.Text += bt.Text;
                 return;
             }
 
-            double result = 0;
-
-            switch (operation)
+            // ===== TOÁN TỬ =====
+            if (bt.Text == "+" || bt.Text == "-" || bt.Text == "*" || bt.Text == "/")
             {
-                case "+":
-                    result = numberA + numberB;
-                    break;
+                if (txtDisplay.Text == "") return;
 
-                case "*":
-                    result = numberA * numberB;
-                    break;
-
-                default:
-                    tbDisplay.Text = "ERROR";
-                    return;
+                workingMemory = decimal.Parse(txtDisplay.Text);
+                opr = bt.Text;
+                txtDisplay.Clear();
+                return;
             }
 
-            tbDisplay.Text = result.ToString();
+            // ===== DẤU = =====
+            if (bt.Text == "=")
+            {
+                if (txtDisplay.Text == "" || opr == "") return;
 
-            // Cho phép bấm thêm phép tính tiếp theo
-            currentInput = result.ToString();
-            operation = "";
+                decimal secondValue = decimal.Parse(txtDisplay.Text);
+                decimal result = 0;
+
+                try
+                {
+                    switch (opr)
+                    {
+                        case "+": result = workingMemory + secondValue; break;
+                        case "-": result = workingMemory - secondValue; break;
+                        case "*": result = workingMemory * secondValue; break;
+                        case "/":
+                            if (secondValue == 0)
+                            {
+                                txtDisplay.Text = "Error";
+                                return;
+                            }
+                            result = workingMemory / secondValue;
+                            break;
+                    }
+
+                    txtDisplay.Text = result.ToString();
+                }
+                catch
+                {
+                    txtDisplay.Text = "Error";
+                }
+
+                return;
+            }
+
+            // ===== BACKSPACE =====
+            if (bt.Text == "←")
+            {
+                if (txtDisplay.Text.Length > 0)
+                    txtDisplay.Text = txtDisplay.Text.Remove(txtDisplay.Text.Length - 1);
+                return;
+            }
+
+            // ===== CLEAR ALL =====
+            if (bt.Text == "C")
+            {
+                workingMemory = 0;
+                opr = "";
+                txtDisplay.Clear();
+                return;
+            }
+
+            // ===== CLEAR ENTRY =====
+            if (bt.Text == "CE")
+            {
+                txtDisplay.Clear();
+                return;
+            }
+
+            // ===== ĐỔI DẤU =====
+            if (bt.Text == "±")
+            {
+                if (txtDisplay.Text == "") return;
+
+                decimal curr = decimal.Parse(txtDisplay.Text);
+                txtDisplay.Text = (-curr).ToString();
+                return;
+            }
+
+            // ===== CĂN BẬC 2 =====
+            if (bt.Text == "√")
+            {
+                if (txtDisplay.Text == "") return;
+
+                decimal curr = decimal.Parse(txtDisplay.Text);
+                double sqrt = Math.Sqrt((double)curr);
+
+                txtDisplay.Text = ((decimal)sqrt).ToString();
+                return;
+            }
+
+            // ===== PHẦN TRĂM =====
+            if (bt.Text == "%")
+            {
+                if (txtDisplay.Text == "") return;
+
+                decimal curr = decimal.Parse(txtDisplay.Text);
+                txtDisplay.Text = (curr / 100).ToString();
+                return;
+            }
+
+            // ===== 1 / X =====
+            if (bt.Text == "1/x")
+            {
+                if (txtDisplay.Text == "") return;
+
+                decimal curr = decimal.Parse(txtDisplay.Text);
+
+                if (curr == 0)
+                {
+                    txtDisplay.Text = "Error";
+                    return;
+                }
+
+                txtDisplay.Text = (1 / curr).ToString();
+                return;
+            }
+
+            // ===== MEMORY =====
+            if (bt.Text == "MC") memory = 0;
+            else if (bt.Text == "MR") txtDisplay.Text = memory.ToString();
+            else if (bt.Text == "MS")
+            {
+                if (txtDisplay.Text != "")
+                    memory = decimal.Parse(txtDisplay.Text);
+            }
+            else if (bt.Text == "M+" && txtDisplay.Text != "")
+                memory += decimal.Parse(txtDisplay.Text);
+            else if (bt.Text == "M-" && txtDisplay.Text != "")
+                memory -= decimal.Parse(txtDisplay.Text);
         }
     }
 }
