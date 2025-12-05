@@ -1,12 +1,15 @@
-﻿namespace Ex_06
+﻿namespace Article07
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Button bt_OK;
+        private System.Windows.Forms.Label lbYear;
+        private System.Windows.Forms.TextBox tbYear;
+        private System.Windows.Forms.Label lbPhone;
+        private System.Windows.Forms.TextBox tbPhone;
 
         /// <summary>
-        /// Clean up resources  
+        /// Clean up any resources being used.
         /// </summary>
         protected override void Dispose(bool disposing)
         {
@@ -18,35 +21,67 @@
         }
 
         #region Windows Form Designer generated code
+
         private void InitializeComponent()
         {
-            this.bt_OK = new System.Windows.Forms.Button();
+            this.lbYear = new System.Windows.Forms.Label();
+            this.tbYear = new System.Windows.Forms.TextBox();
+            this.lbPhone = new System.Windows.Forms.Label();
+            this.tbPhone = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-
             // 
-            // bt_OK
+            // lbYear
             // 
-            this.bt_OK.Anchor =
-                ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_OK.Location = new System.Drawing.Point(208, 302);
-            this.bt_OK.Name = "bt_OK";
-            this.bt_OK.Size = new System.Drawing.Size(80, 25);
-            this.bt_OK.TabIndex = 0;
-            this.bt_OK.Text = "OK";
-            this.bt_OK.UseVisualStyleBackColor = true;
-            this.bt_OK.Click += new System.EventHandler(this.bt_OK_Click);
-
+            this.lbYear.AutoSize = true;
+            this.lbYear.Location = new System.Drawing.Point(12, 18);
+            this.lbYear.Name = "lbYear";
+            this.lbYear.Size = new System.Drawing.Size(31, 15);
+            this.lbYear.TabIndex = 0;
+            this.lbYear.Text = "Year";
+            // 
+            // tbYear
+            // 
+            this.tbYear.Location = new System.Drawing.Point(110, 15);
+            this.tbYear.Name = "tbYear";
+            this.tbYear.Size = new System.Drawing.Size(120, 23);
+            this.tbYear.TabIndex = 1;
+            // Gán sự kiện KeyPress và Validating
+            this.tbYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbYear_KeyPress);
+            this.tbYear.Validating += new System.ComponentModel.CancelEventHandler(this.tbYear_Validating);
+            // 
+            // lbPhone
+            // 
+            this.lbPhone.AutoSize = true;
+            this.lbPhone.Location = new System.Drawing.Point(12, 52);
+            this.lbPhone.Name = "lbPhone";
+            this.lbPhone.Size = new System.Drawing.Size(89, 15);
+            this.lbPhone.TabIndex = 2;
+            this.lbPhone.Text = "Phone Number";
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.Location = new System.Drawing.Point(110, 49);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(120, 23);
+            this.tbPhone.TabIndex = 3;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(300, 350); // kích thước chuẩn
-            this.Controls.Add(this.bt_OK);
+            this.ClientSize = new System.Drawing.Size(260, 95);
+            this.Controls.Add(this.tbPhone);
+            this.Controls.Add(this.lbPhone);
+            this.Controls.Add(this.tbYear);
+            this.Controls.Add(this.lbYear);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
+
         #endregion
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Ex_06
+namespace Article07
 {
     internal static class Program
     {
