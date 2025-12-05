@@ -1,21 +1,19 @@
-﻿namespace Article16
+﻿namespace Article17
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
 
+        private System.Windows.Forms.Button btSelect;
+        private System.Windows.Forms.Button btDeselect;
+        private System.Windows.Forms.Button btSelectAll;
+        private System.Windows.Forms.Button btDeselectAll;
+
+        private System.Windows.Forms.ListBox lbSong;
+        private System.Windows.Forms.ListBox lbFavorite;
+
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton rdMale;
-        private System.Windows.Forms.RadioButton rdFemale;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DateTimePicker dtpBirth;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox cbFaculty;
-        private System.Windows.Forms.Button btAdd;
-        private System.Windows.Forms.Button btExit;
-        private System.Windows.Forms.ListBox lbStatus;
 
         protected override void Dispose(bool disposing)
         {
@@ -26,103 +24,78 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
+            this.btSelect = new System.Windows.Forms.Button();
+            this.btDeselect = new System.Windows.Forms.Button();
+            this.btSelectAll = new System.Windows.Forms.Button();
+            this.btDeselectAll = new System.Windows.Forms.Button();
+
+            this.lbSong = new System.Windows.Forms.ListBox();
+            this.lbFavorite = new System.Windows.Forms.ListBox();
+
             this.label1 = new System.Windows.Forms.Label();
-            this.tbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.rdMale = new System.Windows.Forms.RadioButton();
-            this.rdFemale = new System.Windows.Forms.RadioButton();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtpBirth = new System.Windows.Forms.DateTimePicker();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbFaculty = new System.Windows.Forms.ComboBox();
-            this.btAdd = new System.Windows.Forms.Button();
-            this.btExit = new System.Windows.Forms.Button();
-            this.lbStatus = new System.Windows.Forms.ListBox();
+
             this.SuspendLayout();
 
             // label1
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(40, 30);
-            this.label1.Text = "Họ và tên:";
-
-            // tbName
-            this.tbName.Location = new System.Drawing.Point(150, 27);
-            this.tbName.Size = new System.Drawing.Size(220, 27);
+            this.label1.Text = "Danh sách bài hát";
+            this.label1.Location = new System.Drawing.Point(30, 10);
 
             // label2
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 80);
-            this.label2.Text = "Giới tính:";
+            this.label2.Text = "Danh sách bài hát ưa thích";
+            this.label2.Location = new System.Drawing.Point(350, 10);
 
-            // rdMale
-            this.rdMale.AutoSize = true;
-            this.rdMale.Location = new System.Drawing.Point(150, 78);
-            this.rdMale.Text = "Nam";
+            // lbSong
+            this.lbSong.Location = new System.Drawing.Point(30, 30);
+            this.lbSong.Size = new System.Drawing.Size(200, 250);
+            this.lbSong.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbSong_MouseDoubleClick);
 
-            // rdFemale
-            this.rdFemale.AutoSize = true;
-            this.rdFemale.Location = new System.Drawing.Point(230, 78);
-            this.rdFemale.Text = "Nữ";
+            // lbFavorite
+            this.lbFavorite.Location = new System.Drawing.Point(350, 30);
+            this.lbFavorite.Size = new System.Drawing.Size(200, 250);
+            this.lbFavorite.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lbFavorite_MouseDoubleClick);
 
-            // label3
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(40, 130);
-            this.label3.Text = "Ngày sinh:";
+            // btSelect >
+            this.btSelect.Text = ">";
+            this.btSelect.Location = new System.Drawing.Point(260, 50);
+            this.btSelect.Size = new System.Drawing.Size(60, 30);
+            this.btSelect.Click += new System.EventHandler(this.btSelect_Click);
 
-            // dtpBirth
-            this.dtpBirth.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpBirth.Location = new System.Drawing.Point(150, 125);
-            this.dtpBirth.Size = new System.Drawing.Size(220, 27);
+            // btDeselect <
+            this.btDeselect.Text = "<";
+            this.btDeselect.Location = new System.Drawing.Point(260, 100);
+            this.btDeselect.Size = new System.Drawing.Size(60, 30);
+            this.btDeselect.Click += new System.EventHandler(this.btDeselect_Click);
 
-            // label4
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(40, 180);
-            this.label4.Text = "Khoa:";
+            // btSelectAll >>
+            this.btSelectAll.Text = ">>";
+            this.btSelectAll.Location = new System.Drawing.Point(260, 150);
+            this.btSelectAll.Size = new System.Drawing.Size(60, 30);
+            this.btSelectAll.Click += new System.EventHandler(this.btSelectAll_Click);
 
-            // cbFaculty
-            this.cbFaculty.Location = new System.Drawing.Point(150, 175);
-            this.cbFaculty.Size = new System.Drawing.Size(220, 28);
-
-            // btAdd
-            this.btAdd.Location = new System.Drawing.Point(40, 230);
-            this.btAdd.Size = new System.Drawing.Size(120, 40);
-            this.btAdd.Text = "Thêm";
-            this.btAdd.Click += new System.EventHandler(this.btAdd_Click);
-
-            // btExit
-            this.btExit.Location = new System.Drawing.Point(180, 230);
-            this.btExit.Size = new System.Drawing.Size(120, 40);
-            this.btExit.Text = "Thoát";
-            this.btExit.Click += new System.EventHandler(this.btExit_Click);
-
-            // lbStatus
-            this.lbStatus.Location = new System.Drawing.Point(40, 290);
-            this.lbStatus.Size = new System.Drawing.Size(360, 150);
+            // btDeselectAll <<
+            this.btDeselectAll.Text = "<<";
+            this.btDeselectAll.Location = new System.Drawing.Point(260, 200);
+            this.btDeselectAll.Size = new System.Drawing.Size(60, 30);
+            this.btDeselectAll.Click += new System.EventHandler(this.btDeselectAll_Click);
 
             // Form1
-            this.ClientSize = new System.Drawing.Size(450, 470);
+            this.ClientSize = new System.Drawing.Size(600, 300);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.tbName);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.rdMale);
-            this.Controls.Add(this.rdFemale);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dtpBirth);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cbFaculty);
-            this.Controls.Add(this.btAdd);
-            this.Controls.Add(this.btExit);
-            this.Controls.Add(this.lbStatus);
-            this.Text = "Thông tin sinh viên";
 
+            this.Controls.Add(this.lbSong);
+            this.Controls.Add(this.lbFavorite);
+
+            this.Controls.Add(this.btSelect);
+            this.Controls.Add(this.btDeselect);
+            this.Controls.Add(this.btSelectAll);
+            this.Controls.Add(this.btDeselectAll);
+
+            this.Text = "Music";
             this.ResumeLayout(false);
-            this.PerformLayout();
         }
-
-        #endregion
     }
 }
