@@ -1,85 +1,121 @@
-﻿namespace Article17
+﻿using Article18.Article18;
+using System;
+using System.Collections;
+using System.Windows.Forms;
+
+namespace Article18
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+        }
 
-            // Bài hát mẫu
-            lbSong.Items.AddRange(new string[]
+        // Tạo dữ liệu bài hát
+        public ArrayList GetData()
+        {
+            ArrayList lst = new ArrayList();
+
+            Song s = new Song();
+            s.Id = 53418;
+            s.Name = "Giấc mơ Chapi";
+            s.Author = "Trần Tiến";
+            lst.Add(s);
+
+            s = new Song();
+            s.Id = 52616;
+            s.Name = "Đôi mắt Pleiku";
+            s.Author = "Nguyễn Cường";
+            lst.Add(s);
+
+            s = new Song();
+            s.Id = 51172;
+            s.Name = "Em muốn sống bên anh trọn đời";
+            s.Author = "Nguyễn Cường";
+            lst.Add(s);
+
+            return lst;
+        }
+
+        // ===============================
+        //   FORM LOAD (KHÔNG DÙNG DataSource)
+        // ===============================
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ArrayList lst = GetData();
+
+            // Không dùng DataSource để tránh lỗi Items.Add/Remove
+            foreach (Song s in lst)
             {
-                "Giấc mơ Chapi",
-                "Dế Mèn Phiêu Lưu",
-                "Em Muốn Sống Bên Anh Trọn Đời",
-                "H'Zen Lên Rẫy",
-                "Còn Thương Nhau Thì Về Buôn Mê Thuột",
-                "Lý Cà Phê Ban Mê",
-                "Đi tìm lời ru mặt trời"
-            });
+                lbSong.Items.Add(s);
+            }
+
+            lbSong.DisplayMember = "Name";
+            lbFavorite.DisplayMember = "Name";
         }
 
         // BUTTON >
         private void btSelect_Click(object sender, EventArgs e)
         {
-            if (lbSong.SelectedIndex != -1)
+            if (lbSong.SelectedItem != null)
             {
-                string song = lbSong.SelectedItem.ToString();
+                Song song = (Song)lbSong.SelectedItem;
                 lbFavorite.Items.Add(song);
-                lbSong.Items.RemoveAt(lbSong.SelectedIndex);
+                lbSong.Items.Remove(song);
             }
         }
 
         // BUTTON <
         private void btDeselect_Click(object sender, EventArgs e)
         {
-            if (lbFavorite.SelectedIndex != -1)
+            if (lbFavorite.SelectedItem != null)
             {
-                string song = lbFavorite.SelectedItem.ToString();
+                Song song = (Song)lbFavorite.SelectedItem;
                 lbSong.Items.Add(song);
-                lbFavorite.Items.RemoveAt(lbFavorite.SelectedIndex);
+                lbFavorite.Items.Remove(song);
             }
         }
 
         // BUTTON >>
         private void btSelectAll_Click(object sender, EventArgs e)
         {
-            for (int i = lbSong.Items.Count - 1; i >= 0; i--)
+            while (lbSong.Items.Count > 0)
             {
-                lbFavorite.Items.Add(lbSong.Items[i].ToString());
-                lbSong.Items.RemoveAt(i);
+                lbFavorite.Items.Add(lbSong.Items[0]);
+                lbSong.Items.RemoveAt(0);
             }
         }
 
         // BUTTON <<
         private void btDeselectAll_Click(object sender, EventArgs e)
         {
-            for (int i = lbFavorite.Items.Count - 1; i >= 0; i--)
+            while (lbFavorite.Items.Count > 0)
             {
-                lbSong.Items.Add(lbFavorite.Items[i].ToString());
-                lbFavorite.Items.RemoveAt(i);
+                lbSong.Items.Add(lbFavorite.Items[0]);
+                lbFavorite.Items.RemoveAt(0);
             }
         }
 
-        // Double Click → chuyển qua phải
+        // Double click chọn bài hát
         private void lbSong_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbSong.IndexFromPoint(e.Location);
-            if (index != -1)
+            if (lbSong.SelectedItem != null)
             {
-                lbFavorite.Items.Add(lbSong.Items[index]);
-                lbSong.Items.RemoveAt(index);
+                Song s = (Song)lbSong.SelectedItem;
+                lbFavorite.Items.Add(s);
+                lbSong.Items.Remove(s);
             }
         }
 
-        // Double Click → chuyển về trái
+        // Double click bỏ chọn bài hát
         private void lbFavorite_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = lbFavorite.IndexFromPoint(e.Location);
-            if (index != -1)
+            if (lbFavorite.SelectedItem != null)
             {
-                lbSong.Items.Add(lbFavorite.Items[index]);
-                lbFavorite.Items.RemoveAt(index);
+                Song s = (Song)lbFavorite.SelectedItem;
+                lbSong.Items.Add(s);
+                lbFavorite.Items.Remove(s);
             }
         }
     }
