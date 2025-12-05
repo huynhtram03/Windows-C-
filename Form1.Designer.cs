@@ -1,18 +1,11 @@
-﻿namespace Article14
+﻿namespace Article15
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton rbNu;
-        private System.Windows.Forms.RadioButton rbNam;
-        private System.Windows.Forms.CheckBox chkGiamGia;
-        private System.Windows.Forms.TextBox txtDiscount;
-        private System.Windows.Forms.TextBox txtResult;
-        private System.Windows.Forms.Button btnTinhTien;
-        private System.Windows.Forms.Button btnThoat;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.Button btOK;
 
         protected override void Dispose(bool disposing)
         {
@@ -23,143 +16,51 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            this.txtName = new System.Windows.Forms.TextBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.rbNu = new System.Windows.Forms.RadioButton();
-            this.rbNam = new System.Windows.Forms.RadioButton();
-            this.chkGiamGia = new System.Windows.Forms.CheckBox();
-            this.txtDiscount = new System.Windows.Forms.TextBox();
-            this.txtResult = new System.Windows.Forms.TextBox();
-            this.btnTinhTien = new System.Windows.Forms.Button();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.btOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-
             // 
-            // txtName
+            // lblDate
             // 
-            this.txtName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtName.Location = new System.Drawing.Point(20, 20);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(270, 30);
-            this.txtName.TabIndex = 0;
-            this.txtName.Text = "Nguyễn Văn A";
-
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(20, 20);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(34, 15);
+            this.lblDate.TabIndex = 0;
+            this.lblDate.Text = "Date";
             // 
-            // groupBox1
+            // dtpDate
             // 
-            this.groupBox1.Controls.Add(this.rbNu);
-            this.groupBox1.Controls.Add(this.rbNam);
-            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.groupBox1.Location = new System.Drawing.Point(20, 60);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(270, 70);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Giới tính";
-
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDate.Location = new System.Drawing.Point(70, 16);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(130, 23);
+            this.dtpDate.TabIndex = 1;
+            this.dtpDate.ValueChanged += new System.EventHandler(this.dtpDate_ValueChanged);
             // 
-            // rbNu
+            // btOK
             // 
-            this.rbNu.AutoSize = true;
-            this.rbNu.Location = new System.Drawing.Point(150, 30);
-            this.rbNu.Name = "rbNu";
-            this.rbNu.Size = new System.Drawing.Size(54, 27);
-            this.rbNu.TabIndex = 1;
-            this.rbNu.Text = "Nữ";
-            this.rbNu.UseVisualStyleBackColor = true;
-
-            // 
-            // rbNam
-            // 
-            this.rbNam.AutoSize = true;
-            this.rbNam.Checked = true;
-            this.rbNam.Location = new System.Drawing.Point(30, 30);
-            this.rbNam.Name = "rbNam";
-            this.rbNam.Size = new System.Drawing.Size(68, 27);
-            this.rbNam.TabIndex = 0;
-            this.rbNam.TabStop = true;
-            this.rbNam.Text = "Nam";
-            this.rbNam.UseVisualStyleBackColor = true;
-
-            // 
-            // chkGiamGia
-            // 
-            this.chkGiamGia.AutoSize = true;
-            this.chkGiamGia.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.chkGiamGia.Location = new System.Drawing.Point(20, 145);
-            this.chkGiamGia.Name = "chkGiamGia";
-            this.chkGiamGia.Size = new System.Drawing.Size(105, 27);
-            this.chkGiamGia.TabIndex = 2;
-            this.chkGiamGia.Text = "Giảm giá";
-            this.chkGiamGia.UseVisualStyleBackColor = true;
-
-            // 
-            // txtDiscount
-            // 
-            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtDiscount.Location = new System.Drawing.Point(130, 143);
-            this.txtDiscount.Name = "txtDiscount";
-            this.txtDiscount.Size = new System.Drawing.Size(50, 30);
-            this.txtDiscount.TabIndex = 3;
-            this.txtDiscount.Text = "7";
-            this.txtDiscount.Enabled = false;
-
-            // 
-            // txtResult
-            // 
-            this.txtResult.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtResult.Location = new System.Drawing.Point(20, 180);
-            this.txtResult.Multiline = true;
-            this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(270, 80);
-            this.txtResult.TabIndex = 4;
-
-            // 
-            // btnTinhTien
-            // 
-            this.btnTinhTien.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnTinhTien.Location = new System.Drawing.Point(70, 270);
-            this.btnTinhTien.Name = "btnTinhTien";
-            this.btnTinhTien.Size = new System.Drawing.Size(80, 35);
-            this.btnTinhTien.TabIndex = 5;
-            this.btnTinhTien.Text = "Tính tiền";
-            this.btnTinhTien.UseVisualStyleBackColor = true;
-
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnThoat.Location = new System.Drawing.Point(170, 270);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(80, 35);
-            this.btnThoat.TabIndex = 6;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
-
+            this.btOK.Location = new System.Drawing.Point(110, 55);
+            this.btOK.Name = "btOK";
+            this.btOK.Size = new System.Drawing.Size(60, 28);
+            this.btOK.TabIndex = 2;
+            this.btOK.Text = "OK";
+            this.btOK.UseVisualStyleBackColor = true;
+            this.btOK.Click += new System.EventHandler(this.btOK_Click);
             // 
             // Form1
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 330);
-            this.Controls.Add(this.btnThoat);
-            this.Controls.Add(this.btnTinhTien);
-            this.Controls.Add(this.txtResult);
-            this.Controls.Add(this.txtDiscount);
-            this.Controls.Add(this.chkGiamGia);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtName);
+            this.ClientSize = new System.Drawing.Size(240, 100);
+            this.Controls.Add(this.btOK);
+            this.Controls.Add(this.dtpDate);
+            this.Controls.Add(this.lblDate);
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Text = "DateTimePicker";
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
-        #endregion
     }
 }
