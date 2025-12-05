@@ -1,4 +1,4 @@
-namespace Article15
+namespace Article16
 {
     internal static class Program
     {
