@@ -1,8 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+using System;
 using System.Windows.Forms;
 
-namespace Article07
+namespace Article08
 {
     public partial class Form1 : Form
     {
@@ -11,34 +10,23 @@ namespace Article07
             InitializeComponent();
         }
 
-        private void tbYear_KeyPress(object sender, KeyPressEventArgs e)
+        private void btCong_Click(object sender, EventArgs e)
         {
-            // Chỉ cho nhập số và phím Backspace
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)Keys.Back)
-            {
-                e.Handled = true;
-            }
+            int x = int.Parse(tbSoX.Text);
+            int y = int.Parse(tbSoY.Text);
+            tbKetQua.Text = (x + y).ToString();
         }
 
-        private void tbYear_Validating(object sender, CancelEventArgs e)
+        private void btNhan_Click(object sender, EventArgs e)
         {
-            // Nếu để trống → không kiểm tra
-            if (string.IsNullOrWhiteSpace(tbYear.Text))
-                return;
+            int x = int.Parse(tbSoX.Text);
+            int y = int.Parse(tbSoY.Text);
+            tbKetQua.Text = (x * y).ToString();
+        }
 
-            // Kiểm tra năm
-            if (!int.TryParse(tbYear.Text, out int year))
-            {
-                MessageBox.Show("Giá trị không hợp lệ!");
-                e.Cancel = true;
-                return;
-            }
-
-            if (year > 2000)
-            {
-                MessageBox.Show("Year must be ≤ 2000!");
-                e.Cancel = true;
-            }
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

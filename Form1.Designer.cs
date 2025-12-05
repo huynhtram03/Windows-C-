@@ -1,22 +1,25 @@
-﻿namespace Article07
+﻿namespace Article08
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
-        private System.Windows.Forms.Label lbYear;
-        private System.Windows.Forms.TextBox tbYear;
-        private System.Windows.Forms.Label lbPhone;
-        private System.Windows.Forms.TextBox tbPhone;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
+        private System.Windows.Forms.Label lblSoX;
+        private System.Windows.Forms.Label lblSoY;
+        private System.Windows.Forms.Label lblKetQua;
+
+        private System.Windows.Forms.TextBox tbSoX;
+        private System.Windows.Forms.TextBox tbSoY;
+        private System.Windows.Forms.TextBox tbKetQua;
+
+        private System.Windows.Forms.Button btCong;
+        private System.Windows.Forms.Button btNhan;
+        private System.Windows.Forms.Button btThoat;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
@@ -24,60 +27,101 @@
 
         private void InitializeComponent()
         {
-            this.lbYear = new System.Windows.Forms.Label();
-            this.tbYear = new System.Windows.Forms.TextBox();
-            this.lbPhone = new System.Windows.Forms.Label();
-            this.tbPhone = new System.Windows.Forms.TextBox();
+            this.lblSoX = new System.Windows.Forms.Label();
+            this.lblSoY = new System.Windows.Forms.Label();
+            this.lblKetQua = new System.Windows.Forms.Label();
+
+            this.tbSoX = new System.Windows.Forms.TextBox();
+            this.tbSoY = new System.Windows.Forms.TextBox();
+            this.tbKetQua = new System.Windows.Forms.TextBox();
+
+            this.btCong = new System.Windows.Forms.Button();
+            this.btNhan = new System.Windows.Forms.Button();
+            this.btThoat = new System.Windows.Forms.Button();
+
             this.SuspendLayout();
-            // 
-            // lbYear
-            // 
-            this.lbYear.AutoSize = true;
-            this.lbYear.Location = new System.Drawing.Point(12, 18);
-            this.lbYear.Name = "lbYear";
-            this.lbYear.Size = new System.Drawing.Size(31, 15);
-            this.lbYear.TabIndex = 0;
-            this.lbYear.Text = "Year";
-            // 
-            // tbYear
-            // 
-            this.tbYear.Location = new System.Drawing.Point(110, 15);
-            this.tbYear.Name = "tbYear";
-            this.tbYear.Size = new System.Drawing.Size(120, 23);
-            this.tbYear.TabIndex = 1;
-            // Gán sự kiện KeyPress và Validating
-            this.tbYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbYear_KeyPress);
-            this.tbYear.Validating += new System.ComponentModel.CancelEventHandler(this.tbYear_Validating);
-            // 
-            // lbPhone
-            // 
-            this.lbPhone.AutoSize = true;
-            this.lbPhone.Location = new System.Drawing.Point(12, 52);
-            this.lbPhone.Name = "lbPhone";
-            this.lbPhone.Size = new System.Drawing.Size(89, 15);
-            this.lbPhone.TabIndex = 2;
-            this.lbPhone.Text = "Phone Number";
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.Location = new System.Drawing.Point(110, 49);
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(120, 23);
-            this.tbPhone.TabIndex = 3;
-            // 
-            // Form1
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+
+            // LABEL Số X
+            this.lblSoX.AutoSize = true;
+            this.lblSoX.Location = new System.Drawing.Point(20, 20);
+            this.lblSoX.Name = "lblSoX";
+            this.lblSoX.Size = new System.Drawing.Size(32, 20);
+            this.lblSoX.Text = "Số x";
+
+            // TEXTBOX Số X
+            this.tbSoX.Location = new System.Drawing.Point(80, 17);
+            this.tbSoX.Name = "tbSoX";
+            this.tbSoX.Size = new System.Drawing.Size(180, 27);
+
+            // LABEL Số Y
+            this.lblSoY.AutoSize = true;
+            this.lblSoY.Location = new System.Drawing.Point(20, 60);
+            this.lblSoY.Name = "lblSoY";
+            this.lblSoY.Size = new System.Drawing.Size(32, 20);
+            this.lblSoY.Text = "Số y";
+
+            // TEXTBOX Số Y
+            this.tbSoY.Location = new System.Drawing.Point(80, 57);
+            this.tbSoY.Name = "tbSoY";
+            this.tbSoY.Size = new System.Drawing.Size(180, 27);
+
+            // LABEL Kết quả
+            this.lblKetQua.AutoSize = true;
+            this.lblKetQua.Location = new System.Drawing.Point(20, 100);
+            this.lblKetQua.Name = "lblKetQua";
+            this.lblKetQua.Size = new System.Drawing.Size(58, 20);
+            this.lblKetQua.Text = "Kết quả";
+
+            // TEXTBOX Kết quả
+            this.tbKetQua.Location = new System.Drawing.Point(80, 97);
+            this.tbKetQua.Name = "tbKetQua";
+            this.tbKetQua.ReadOnly = true;
+            this.tbKetQua.Size = new System.Drawing.Size(180, 27);
+
+            // BUTTON Cộng
+            this.btCong.Location = new System.Drawing.Point(40, 140);
+            this.btCong.Name = "btCong";
+            this.btCong.Size = new System.Drawing.Size(60, 30);
+            this.btCong.Text = "Cộng";
+            this.btCong.UseVisualStyleBackColor = true;
+            this.btCong.Click += new System.EventHandler(this.btCong_Click);
+
+            // BUTTON Nhân
+            this.btNhan.Location = new System.Drawing.Point(120, 140);
+            this.btNhan.Name = "btNhan";
+            this.btNhan.Size = new System.Drawing.Size(60, 30);
+            this.btNhan.Text = "Nhân";
+            this.btNhan.UseVisualStyleBackColor = true;
+            this.btNhan.Click += new System.EventHandler(this.btNhan_Click);
+
+            // BUTTON Thoát
+            this.btThoat.Location = new System.Drawing.Point(200, 140);
+            this.btThoat.Name = "btThoat";
+            this.btThoat.Size = new System.Drawing.Size(60, 30);
+            this.btThoat.Text = "Thoát";
+            this.btThoat.UseVisualStyleBackColor = true;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
+
+            // FORM
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 95);
-            this.Controls.Add(this.tbPhone);
-            this.Controls.Add(this.lbPhone);
-            this.Controls.Add(this.tbYear);
-            this.Controls.Add(this.lbYear);
+            this.ClientSize = new System.Drawing.Size(300, 200);
+
+            this.Controls.Add(this.lblSoX);
+            this.Controls.Add(this.tbSoX);
+            this.Controls.Add(this.lblSoY);
+            this.Controls.Add(this.tbSoY);
+            this.Controls.Add(this.lblKetQua);
+            this.Controls.Add(this.tbKetQua);
+            this.Controls.Add(this.btCong);
+            this.Controls.Add(this.btNhan);
+            this.Controls.Add(this.btThoat);
+
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Caculator";
+
             this.ResumeLayout(false);
             this.PerformLayout();
         }
