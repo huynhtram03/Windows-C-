@@ -1,168 +1,46 @@
-﻿using System;
-using System.Windows.Forms;
-
-namespace Article11
+﻿namespace Article12
 {
     public partial class Form1 : Form
     {
-        decimal memory = 0;        // M+, M-, MR, MC
-        decimal workingMemory = 0; // Lưu A
-        string opr = "";           // Toán tử
-
         public Form1()
         {
             InitializeComponent();
         }
 
-        // =================== Xử lý tất cả button ===================
-        private void Button_Click(object sender, EventArgs e)
+        // ===== Sự kiện Form Load =====
+        private void Form1_Load(object sender, EventArgs e)
         {
-            Button bt = (Button)sender;
-
-            // ===== SỐ và DẤU CHẤM =====
-            if (char.IsDigit(bt.Text, 0) || bt.Text == ".")
+            // Chỉ set SelectedIndex khi danh sách có đủ phần tử
+            if (cb_Faculty.Items.Count > 2)
             {
-                if (bt.Text == ".")
-                {
-                    if (txtDisplay.Text == "") txtDisplay.Text = "0";
-                    if (txtDisplay.Text.Contains(".")) return;
-                }
+                cb_Faculty.SelectedIndex = 2;
+            }
+        }
 
-                txtDisplay.Text += bt.Text;
+        // ===== Khi chọn mục trong ComboBox =====
+        private void cb_Faculty_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Chỉ xử lý khi đã chọn mục hợp lệ
+            if (cb_Faculty.SelectedIndex >= 0)
+            {
+                int index = cb_Faculty.SelectedIndex;
+                tbDisplay.Text = "Bạn đã chọn khoa thứ: " + index.ToString();
+            }
+        }
+
+        // ===== Khi nhấn nút OK =====
+        private void btOK_Click(object sender, EventArgs e)
+        {
+            // Nếu chưa chọn -> báo lỗi
+            if (cb_Faculty.SelectedItem == null)
+            {
+                tbDisplay.Text = "Chưa chọn khoa!";
                 return;
             }
 
-            // ===== TOÁN TỬ =====
-            if (bt.Text == "+" || bt.Text == "-" || bt.Text == "*" || bt.Text == "/")
-            {
-                if (txtDisplay.Text == "") return;
-
-                workingMemory = decimal.Parse(txtDisplay.Text);
-                opr = bt.Text;
-                txtDisplay.Clear();
-                return;
-            }
-
-            // ===== DẤU = =====
-            if (bt.Text == "=")
-            {
-                if (txtDisplay.Text == "" || opr == "") return;
-
-                decimal secondValue = decimal.Parse(txtDisplay.Text);
-                decimal result = 0;
-
-                try
-                {
-                    switch (opr)
-                    {
-                        case "+": result = workingMemory + secondValue; break;
-                        case "-": result = workingMemory - secondValue; break;
-                        case "*": result = workingMemory * secondValue; break;
-                        case "/":
-                            if (secondValue == 0)
-                            {
-                                txtDisplay.Text = "Error";
-                                return;
-                            }
-                            result = workingMemory / secondValue;
-                            break;
-                    }
-
-                    txtDisplay.Text = result.ToString();
-                }
-                catch
-                {
-                    txtDisplay.Text = "Error";
-                }
-
-                return;
-            }
-
-            // ===== BACKSPACE =====
-            if (bt.Text == "←")
-            {
-                if (txtDisplay.Text.Length > 0)
-                    txtDisplay.Text = txtDisplay.Text.Remove(txtDisplay.Text.Length - 1);
-                return;
-            }
-
-            // ===== CLEAR ALL =====
-            if (bt.Text == "C")
-            {
-                workingMemory = 0;
-                opr = "";
-                txtDisplay.Clear();
-                return;
-            }
-
-            // ===== CLEAR ENTRY =====
-            if (bt.Text == "CE")
-            {
-                txtDisplay.Clear();
-                return;
-            }
-
-            // ===== ĐỔI DẤU =====
-            if (bt.Text == "±")
-            {
-                if (txtDisplay.Text == "") return;
-
-                decimal curr = decimal.Parse(txtDisplay.Text);
-                txtDisplay.Text = (-curr).ToString();
-                return;
-            }
-
-            // ===== CĂN BẬC 2 =====
-            if (bt.Text == "√")
-            {
-                if (txtDisplay.Text == "") return;
-
-                decimal curr = decimal.Parse(txtDisplay.Text);
-                double sqrt = Math.Sqrt((double)curr);
-
-                txtDisplay.Text = ((decimal)sqrt).ToString();
-                return;
-            }
-
-            // ===== PHẦN TRĂM =====
-            if (bt.Text == "%")
-            {
-                if (txtDisplay.Text == "") return;
-
-                decimal curr = decimal.Parse(txtDisplay.Text);
-                txtDisplay.Text = (curr / 100).ToString();
-                return;
-            }
-
-            // ===== 1 / X =====
-            if (bt.Text == "1/x")
-            {
-                if (txtDisplay.Text == "") return;
-
-                decimal curr = decimal.Parse(txtDisplay.Text);
-
-                if (curr == 0)
-                {
-                    txtDisplay.Text = "Error";
-                    return;
-                }
-
-                txtDisplay.Text = (1 / curr).ToString();
-                return;
-            }
-
-            // ===== MEMORY =====
-            if (bt.Text == "MC") memory = 0;
-            else if (bt.Text == "MR") txtDisplay.Text = memory.ToString();
-            else if (bt.Text == "MS")
-            {
-                if (txtDisplay.Text != "")
-                    memory = decimal.Parse(txtDisplay.Text);
-            }
-            else if (bt.Text == "M+" && txtDisplay.Text != "")
-                memory += decimal.Parse(txtDisplay.Text);
-            else if (bt.Text == "M-" && txtDisplay.Text != "")
-                memory -= decimal.Parse(txtDisplay.Text);
+            // Lấy giá trị khoa
+            string item = cb_Faculty.SelectedItem.ToString();
+            tbDisplay.Text = "Bạn là sinh viên khoa : " + item;
         }
     }
 }
