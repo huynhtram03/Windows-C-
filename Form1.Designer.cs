@@ -1,12 +1,18 @@
-﻿namespace Article12
+﻿namespace Article14
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
 
-        private ComboBox cb_Faculty;
-        private TextBox tbDisplay;
-        private Button btOK;
+        private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rbNu;
+        private System.Windows.Forms.RadioButton rbNam;
+        private System.Windows.Forms.CheckBox chkGiamGia;
+        private System.Windows.Forms.TextBox txtDiscount;
+        private System.Windows.Forms.TextBox txtResult;
+        private System.Windows.Forms.Button btnTinhTien;
+        private System.Windows.Forms.Button btnThoat;
 
         protected override void Dispose(bool disposing)
         {
@@ -18,61 +24,138 @@
         }
 
         #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            this.cb_Faculty = new System.Windows.Forms.ComboBox();
-            this.tbDisplay = new System.Windows.Forms.TextBox();
-            this.btOK = new System.Windows.Forms.Button();
+            this.txtName = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbNu = new System.Windows.Forms.RadioButton();
+            this.rbNam = new System.Windows.Forms.RadioButton();
+            this.chkGiamGia = new System.Windows.Forms.CheckBox();
+            this.txtDiscount = new System.Windows.Forms.TextBox();
+            this.txtResult = new System.Windows.Forms.TextBox();
+            this.btnTinhTien = new System.Windows.Forms.Button();
+            this.btnThoat = new System.Windows.Forms.Button();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
+
             // 
-            // cb_Faculty
+            // txtName
             // 
-            this.cb_Faculty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cb_Faculty.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cb_Faculty.FormattingEnabled = true;
-            this.cb_Faculty.Items.AddRange(new object[] {
-            "Khoa CNTT",
-            "Khoa Kinh Tế",
-            "Khoa Ngoại Ngữ",
-            "Khoa Toán",
-            "Khoa Điện – Điện Tử"});
-            this.cb_Faculty.Location = new System.Drawing.Point(40, 40);
-            this.cb_Faculty.Name = "cb_Faculty";
-            this.cb_Faculty.Size = new System.Drawing.Size(250, 29);
-            this.cb_Faculty.TabIndex = 0;
-            this.cb_Faculty.SelectedIndexChanged += new System.EventHandler(this.cb_Faculty_SelectedIndexChanged);
+            this.txtName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtName.Location = new System.Drawing.Point(20, 20);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(270, 30);
+            this.txtName.TabIndex = 0;
+            this.txtName.Text = "Nguyễn Văn A";
+
             // 
-            // tbDisplay
+            // groupBox1
             // 
-            this.tbDisplay.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.tbDisplay.Location = new System.Drawing.Point(40, 100);
-            this.tbDisplay.Name = "tbDisplay";
-            this.tbDisplay.Size = new System.Drawing.Size(250, 29);
-            this.tbDisplay.TabIndex = 1;
+            this.groupBox1.Controls.Add(this.rbNu);
+            this.groupBox1.Controls.Add(this.rbNam);
+            this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.groupBox1.Location = new System.Drawing.Point(20, 60);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(270, 70);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Giới tính";
+
             // 
-            // btOK
+            // rbNu
             // 
-            this.btOK.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.btOK.Location = new System.Drawing.Point(40, 150);
-            this.btOK.Name = "btOK";
-            this.btOK.Size = new System.Drawing.Size(250, 40);
-            this.btOK.TabIndex = 2;
-            this.btOK.Text = "OK";
-            this.btOK.UseVisualStyleBackColor = true;
-            this.btOK.Click += new System.EventHandler(this.btOK_Click);
+            this.rbNu.AutoSize = true;
+            this.rbNu.Location = new System.Drawing.Point(150, 30);
+            this.rbNu.Name = "rbNu";
+            this.rbNu.Size = new System.Drawing.Size(54, 27);
+            this.rbNu.TabIndex = 1;
+            this.rbNu.Text = "Nữ";
+            this.rbNu.UseVisualStyleBackColor = true;
+
+            // 
+            // rbNam
+            // 
+            this.rbNam.AutoSize = true;
+            this.rbNam.Checked = true;
+            this.rbNam.Location = new System.Drawing.Point(30, 30);
+            this.rbNam.Name = "rbNam";
+            this.rbNam.Size = new System.Drawing.Size(68, 27);
+            this.rbNam.TabIndex = 0;
+            this.rbNam.TabStop = true;
+            this.rbNam.Text = "Nam";
+            this.rbNam.UseVisualStyleBackColor = true;
+
+            // 
+            // chkGiamGia
+            // 
+            this.chkGiamGia.AutoSize = true;
+            this.chkGiamGia.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.chkGiamGia.Location = new System.Drawing.Point(20, 145);
+            this.chkGiamGia.Name = "chkGiamGia";
+            this.chkGiamGia.Size = new System.Drawing.Size(105, 27);
+            this.chkGiamGia.TabIndex = 2;
+            this.chkGiamGia.Text = "Giảm giá";
+            this.chkGiamGia.UseVisualStyleBackColor = true;
+
+            // 
+            // txtDiscount
+            // 
+            this.txtDiscount.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtDiscount.Location = new System.Drawing.Point(130, 143);
+            this.txtDiscount.Name = "txtDiscount";
+            this.txtDiscount.Size = new System.Drawing.Size(50, 30);
+            this.txtDiscount.TabIndex = 3;
+            this.txtDiscount.Text = "7";
+            this.txtDiscount.Enabled = false;
+
+            // 
+            // txtResult
+            // 
+            this.txtResult.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtResult.Location = new System.Drawing.Point(20, 180);
+            this.txtResult.Multiline = true;
+            this.txtResult.Name = "txtResult";
+            this.txtResult.Size = new System.Drawing.Size(270, 80);
+            this.txtResult.TabIndex = 4;
+
+            // 
+            // btnTinhTien
+            // 
+            this.btnTinhTien.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnTinhTien.Location = new System.Drawing.Point(70, 270);
+            this.btnTinhTien.Name = "btnTinhTien";
+            this.btnTinhTien.Size = new System.Drawing.Size(80, 35);
+            this.btnTinhTien.TabIndex = 5;
+            this.btnTinhTien.Text = "Tính tiền";
+            this.btnTinhTien.UseVisualStyleBackColor = true;
+
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnThoat.Location = new System.Drawing.Point(170, 270);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(80, 35);
+            this.btnThoat.TabIndex = 6;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(350, 230);
-            this.Controls.Add(this.btOK);
-            this.Controls.Add(this.tbDisplay);
-            this.Controls.Add(this.cb_Faculty);
+            this.ClientSize = new System.Drawing.Size(310, 330);
+            this.Controls.Add(this.btnThoat);
+            this.Controls.Add(this.btnTinhTien);
+            this.Controls.Add(this.txtResult);
+            this.Controls.Add(this.txtDiscount);
+            this.Controls.Add(this.chkGiamGia);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtName);
             this.Name = "Form1";
-            this.Text = "Chọn Khoa";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Text = "Form1";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
