@@ -1,57 +1,38 @@
-﻿using System;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
-namespace Article23
+namespace Article24
 {
     public partial class Form1 : Form
     {
-        // Khai báo PictureBox và tọa độ x, y dùng chung
-        PictureBox pb = new PictureBox();
-        int x = 50; // Đặt mặc định 50 để ảnh không dính sát mép
-        int y = 50;
+        private int seconds = 0;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        // Sự kiện khi nhấn nút File...
-        private void btFile_Click(object sender, EventArgs e)
+        private void btStart_Click(object sender, EventArgs e)
         {
-            // Tạo hộp thoại chọn file ảnh
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp";
-
-            if (open.ShowDialog() == DialogResult.OK)
-            {
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                pb.Size = new Size(100, 100);
-                pb.Location = new Point(x, y);
-
-                // Gán đường dẫn file vừa chọn
-                pb.ImageLocation = open.FileName;
-
-                // Nếu chưa có PictureBox trên Form thì thêm vào
-                if (!this.Controls.Contains(pb))
-                {
-                    this.Controls.Add(pb);
-                }
-            }
+            seconds = 0;
+            lbTime.Text = "00:00";
+            btStart.Enabled = false;
+            btStop.Enabled = true;
+            timer1.Start();
         }
 
-        // Nhấn nút sang trái
-        private void btLeft_Click(object sender, EventArgs e)
+        private void btStop_Click(object sender, EventArgs e)
         {
-            x -= 10;
-            pb.Location = new Point(x, y);
+            timer1.Stop();
+            btStart.Enabled = true;
+            btStop.Enabled = false;
         }
 
-        // Nhấn nút sang phải
-        private void btRight_Click(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
         {
-            x += 10;
-            pb.Location = new Point(x, y);
+            seconds++;
+            int minute = seconds / 60;
+            int sec = seconds % 60;
+            lbTime.Text = $"{minute:00}:{sec:00}";
         }
     }
 }

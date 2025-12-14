@@ -1,9 +1,17 @@
-﻿namespace Article23
+﻿namespace Article24
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
 
+        private System.Windows.Forms.Button btStart;
+        private System.Windows.Forms.Button btStop;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Timer timer1;
+
+        /// <summary>
+        ///  Clean up
+        /// </summary>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -17,52 +25,61 @@
 
         private void InitializeComponent()
         {
-            this.btLeft = new System.Windows.Forms.Button();
-            this.btRight = new System.Windows.Forms.Button();
-            this.btFile = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.btStart = new System.Windows.Forms.Button();
+            this.btStop = new System.Windows.Forms.Button();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+
             this.SuspendLayout();
             // 
-            // btLeft
+            // btStart
             // 
-            this.btLeft.Location = new System.Drawing.Point(180, 220);
-            this.btLeft.Name = "btLeft";
-            this.btLeft.Size = new System.Drawing.Size(50, 40);
-            this.btLeft.Text = "<-";
-            this.btLeft.Click += new System.EventHandler(this.btLeft_Click);
+            this.btStart.Location = new System.Drawing.Point(150, 200);
+            this.btStart.Name = "btStart";
+            this.btStart.Size = new System.Drawing.Size(100, 40);
+            this.btStart.Text = "Start";
+            this.btStart.UseVisualStyleBackColor = true;
+            this.btStart.Click += new System.EventHandler(this.btStart_Click);
             // 
-            // btRight
+            // btStop
             // 
-            this.btRight.Location = new System.Drawing.Point(236, 220);
-            this.btRight.Name = "btRight";
-            this.btRight.Size = new System.Drawing.Size(50, 40);
-            this.btRight.Text = "->";
-            this.btRight.Click += new System.EventHandler(this.btRight_Click);
+            this.btStop.Location = new System.Drawing.Point(260, 200);
+            this.btStop.Name = "btStop";
+            this.btStop.Size = new System.Drawing.Size(100, 40);
+            this.btStop.Text = "Stop";
+            this.btStop.UseVisualStyleBackColor = true;
+            this.btStop.Enabled = false;
+            this.btStop.Click += new System.EventHandler(this.btStop_Click);
             // 
-            // btFile
+            // lbTime
             // 
-            this.btFile.Location = new System.Drawing.Point(320, 220);
-            this.btFile.Name = "btFile";
-            this.btFile.Size = new System.Drawing.Size(100, 40);
-            this.btFile.Text = "File...";
-            this.btFile.Click += new System.EventHandler(this.btFile_Click);
+            this.lbTime.AutoSize = true;
+            this.lbTime.Font = new System.Drawing.Font("Arial", 48F, System.Drawing.FontStyle.Bold);
+            this.lbTime.Location = new System.Drawing.Point(130, 70);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(258, 93);
+            this.lbTime.Text = "00:00";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(582, 353);
-            this.Controls.Add(this.btFile);
-            this.Controls.Add(this.btRight);
-            this.Controls.Add(this.btLeft);
+            this.ClientSize = new System.Drawing.Size(500, 300);
+            this.Controls.Add(this.lbTime);
+            this.Controls.Add(this.btStop);
+            this.Controls.Add(this.btStart);
             this.Name = "Form1";
-            this.Text = "Simple Game";
+            this.Text = "Timer Article";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btLeft;
-        private System.Windows.Forms.Button btRight;
-        private System.Windows.Forms.Button btFile;
     }
 }
