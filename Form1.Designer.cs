@@ -1,171 +1,193 @@
-﻿namespace Article20
+﻿namespace Article21
 {
     partial class Form1
     {
         private System.ComponentModel.IContainer components = null;
 
-        private System.Windows.Forms.DataGridView dgvNhanVien;
-        private System.Windows.Forms.TextBox tbMa;
-        private System.Windows.Forms.TextBox tbTen;
-        private System.Windows.Forms.TextBox tbTuoi;
-        private System.Windows.Forms.CheckBox chkNam;
-        private System.Windows.Forms.Button btnThem;
-        private System.Windows.Forms.Button btnXoa;
+        // Khai báo các Label mới
+        private System.Windows.Forms.Label labelMa;
+        private System.Windows.Forms.Label labelTen;
+        private System.Windows.Forms.Label labelTuoi;
+        private System.Windows.Forms.Label labelNam; // Cho chữ 'Nam' bên cạnh checkbox
+
+        private System.Windows.Forms.DataGridView dgvEmployee;
+        private System.Windows.Forms.TextBox tBId;
+        private System.Windows.Forms.TextBox tBName;
+        private System.Windows.Forms.TextBox tBAge;
+        private System.Windows.Forms.CheckBox ckGender;
+        private System.Windows.Forms.Button btAddNew; // Thay thế bằng btThem để dễ hiểu
+        private System.Windows.Forms.Button btDelete;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Label lblMa;
-        private System.Windows.Forms.Label lblTen;
-        private System.Windows.Forms.Label lblTuoi;
-        private System.Windows.Forms.Label lblGioiTinh;
 
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
-            {
                 components.Dispose();
-            }
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
         private void InitializeComponent()
         {
-            this.dgvNhanVien = new System.Windows.Forms.DataGridView();
-            this.tbMa = new System.Windows.Forms.TextBox();
-            this.tbTen = new System.Windows.Forms.TextBox();
-            this.tbTuoi = new System.Windows.Forms.TextBox();
-            this.chkNam = new System.Windows.Forms.CheckBox();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnThoat = new System.Windows.Forms.Button();
-            this.lblMa = new System.Windows.Forms.Label();
-            this.lblTen = new System.Windows.Forms.Label();
-            this.lblTuoi = new System.Windows.Forms.Label();
-            this.lblGioiTinh = new System.Windows.Forms.Label();
+            this.dgvEmployee = new System.Windows.Forms.DataGridView();
 
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).BeginInit();
+            // Khởi tạo các Label mới
+            this.labelMa = new System.Windows.Forms.Label();
+            this.labelTen = new System.Windows.Forms.Label();
+            this.labelTuoi = new System.Windows.Forms.Label();
+            this.labelNam = new System.Windows.Forms.Label();
+
+            this.tBId = new System.Windows.Forms.TextBox();
+            this.tBName = new System.Windows.Forms.TextBox();
+            this.tBAge = new System.Windows.Forms.TextBox();
+            this.ckGender = new System.Windows.Forms.CheckBox();
+
+            // Đổi tên biến để khớp với button Thêm/Xóa/Thoát trong hình
+            this.btAddNew = new System.Windows.Forms.Button(); // Sẽ đổi Text thành Thêm
+            this.btDelete = new System.Windows.Forms.Button();
+            this.btnThoat = new System.Windows.Forms.Button();
+
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).BeginInit();
             this.SuspendLayout();
 
-            // dgvNhanVien
-            this.dgvNhanVien.AllowUserToAddRows = false;
-            this.dgvNhanVien.AllowUserToDeleteRows = false;
-            this.dgvNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNhanVien.Location = new System.Drawing.Point(12, 12);
-            this.dgvNhanVien.Name = "dgvNhanVien";
-            this.dgvNhanVien.Size = new System.Drawing.Size(560, 200);
-            this.dgvNhanVien.TabIndex = 0;
-            this.dgvNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNhanVien_CellClick);
+            // ================================
+            // DataGridView (Vị trí và kích thước đã điều chỉnh)
+            // ================================
+            this.dgvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployee.Location = new System.Drawing.Point(1, 1);
+            this.dgvEmployee.Name = "dgvEmployee";
+            this.dgvEmployee.Size = new System.Drawing.Size(630, 280); // Tăng kích thước
+            this.dgvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvEmployee.ReadOnly = true;
+            this.dgvEmployee.MultiSelect = false;
+            // Dùng CellClick thay cho RowEnter để đảm bảo khớp với code logic
+            this.dgvEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployee_RowEnter);
 
-            // CREATE COLUMNS (explicitly) 
-            var colMa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colMa.HeaderText = "Mã";
-            colMa.Name = "colMa";
-            colMa.ValueType = typeof(string);
+            // Cột (Giữ nguyên)
+            this.dgvEmployee.Columns.Add("Id", "Mã nhân viên");
+            this.dgvEmployee.Columns.Add("Name", "Tên nhân viên");
+            this.dgvEmployee.Columns.Add("Age", "Tuổi");
+            var colGender = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            colGender.Name = "Gender";
+            colGender.HeaderText = "Giới tính (Nam)";
+            this.dgvEmployee.Columns.Add(colGender);
+            // Có thể thêm thuộc tính Fill để các cột lấp đầy chiều rộng
+            this.dgvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 
-            var colTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colTen.HeaderText = "Tên";
-            colTen.Name = "colTen";
-            colTen.ValueType = typeof(string);
 
-            var colTuoi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            colTuoi.HeaderText = "Tuổi";
-            colTuoi.Name = "colTuoi";
-            colTuoi.ValueType = typeof(int);
+            // ================================
+            // Labels (Bổ sung để khớp giao diện)
+            // ================================
+            int labelX = 15;
+            int textX = 80;
 
-            var colGioiTinh = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            colGioiTinh.HeaderText = "Nam?";
-            colGioiTinh.Name = "colGioiTinh";
-            colGioiTinh.ValueType = typeof(bool);
+            // Label Mã
+            this.labelMa.Text = "Mã";
+            this.labelMa.Location = new System.Drawing.Point(labelX, 300);
+            this.labelMa.AutoSize = true;
+            this.labelMa.Name = "labelMa";
+            this.labelMa.TabIndex = 0; // Đặt chỉ mục bất kỳ
 
-            this.dgvNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                colMa, colTen, colTuoi, colGioiTinh
-            });
+            // Label Tên
+            this.labelTen.Text = "Tên";
+            this.labelTen.Location = new System.Drawing.Point(labelX, 330);
+            this.labelTen.AutoSize = true;
+            this.labelTen.Name = "labelTen";
 
-            // Labels + TextBoxes
-            this.lblMa.AutoSize = true;
-            this.lblMa.Location = new System.Drawing.Point(12, 225);
-            this.lblMa.Name = "lblMa";
-            this.lblMa.Size = new System.Drawing.Size(30, 15);
-            this.lblMa.Text = "Mã:";
+            // Label Tuổi
+            this.labelTuoi.Text = "Tuổi";
+            this.labelTuoi.Location = new System.Drawing.Point(labelX, 360);
+            this.labelTuoi.AutoSize = true;
+            this.labelTuoi.Name = "labelTuoi";
 
-            this.tbMa.Location = new System.Drawing.Point(60, 222);
-            this.tbMa.Name = "tbMa";
-            this.tbMa.Size = new System.Drawing.Size(150, 23);
+            // Label Nam (chữ 'Nam' bên cạnh CheckBox)
+            this.labelNam.Text = "Nam";
+            this.labelNam.Location = new System.Drawing.Point(labelX + 25, 390); // Đặt gần CheckBox
+            this.labelNam.AutoSize = true;
+            this.labelNam.Name = "labelNam";
 
-            this.lblTen.AutoSize = true;
-            this.lblTen.Location = new System.Drawing.Point(230, 225);
-            this.lblTen.Name = "lblTen";
-            this.lblTen.Size = new System.Drawing.Size(33, 15);
-            this.lblTen.Text = "Tên:";
 
-            this.tbTen.Location = new System.Drawing.Point(270, 222);
-            this.tbTen.Name = "tbTen";
-            this.tbTen.Size = new System.Drawing.Size(200, 23);
+            // ================================
+            // TextBoxes (Đã điều chỉnh vị trí)
+            // ================================
+            // TextBox ID
+            this.tBId.Location = new System.Drawing.Point(textX, 297);
+            this.tBId.Name = "tBId";
+            this.tBId.Size = new System.Drawing.Size(150, 22);
 
-            this.lblTuoi.AutoSize = true;
-            this.lblTuoi.Location = new System.Drawing.Point(12, 260);
-            this.lblTuoi.Name = "lblTuoi";
-            this.lblTuoi.Size = new System.Drawing.Size(34, 15);
-            this.lblTuoi.Text = "Tuổi:";
+            // TextBox Name
+            this.tBName.Location = new System.Drawing.Point(textX, 327);
+            this.tBName.Name = "tBName";
+            this.tBName.Size = new System.Drawing.Size(300, 22);
 
-            this.tbTuoi.Location = new System.Drawing.Point(60, 257);
-            this.tbTuoi.Name = "tbTuoi";
-            this.tbTuoi.Size = new System.Drawing.Size(150, 23);
+            // TextBox Age
+            this.tBAge.Location = new System.Drawing.Point(textX, 357);
+            this.tBAge.Name = "tBAge";
+            this.tBAge.Size = new System.Drawing.Size(80, 22);
 
-            this.lblGioiTinh.AutoSize = true;
-            this.lblGioiTinh.Location = new System.Drawing.Point(230, 260);
-            this.lblGioiTinh.Name = "lblGioiTinh";
-            this.lblGioiTinh.Size = new System.Drawing.Size(58, 15);
-            this.lblGioiTinh.Text = "Giới tính:";
+            // ================================
+            // CheckBox Gender (Đã điều chỉnh vị trí)
+            // ================================
+            this.ckGender.Location = new System.Drawing.Point(textX, 387); // Cùng hàng với label 'Nam'
+            this.ckGender.Width = 20;
+            this.ckGender.Name = "ckGender";
+            this.ckGender.Text = "Nam"; // Đặt Text cho Checkbox như trong hình
+            this.ckGender.UseVisualStyleBackColor = true;
 
-            this.chkNam.Location = new System.Drawing.Point(300, 256);
-            this.chkNam.Name = "chkNam";
-            this.chkNam.Size = new System.Drawing.Size(80, 24);
-            this.chkNam.Text = "Nam";
-            this.chkNam.UseVisualStyleBackColor = true;
 
-            // Buttons
-            this.btnThem.Location = new System.Drawing.Point(12, 300);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(100, 30);
-            this.btnThem.Text = "Thêm";
-            this.btnThem.UseVisualStyleBackColor = true;
-            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
+            // ================================
+            // Buttons (Đã điều chỉnh vị trí về góc dưới phải)
+            // ================================
+            int buttonY = 410; // Vị trí Y cho tất cả các nút
+            int buttonWidth = 80;
+            int buttonHeight = 25;
 
-            this.btnXoa.Location = new System.Drawing.Point(130, 300);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(100, 30);
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.UseVisualStyleBackColor = true;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // Button Add (Thêm)
+            this.btAddNew.Text = "Thêm"; // Đổi Text thành Thêm
+            this.btAddNew.Location = new System.Drawing.Point(370, buttonY);
+            this.btAddNew.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
+            this.btAddNew.Click += new System.EventHandler(this.btAddNew_Click);
 
-            this.btnThoat.Location = new System.Drawing.Point(250, 300);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(100, 30);
+            // Button Delete (Xóa)
+            this.btDelete.Text = "Xóa";
+            this.btDelete.Location = new System.Drawing.Point(460, buttonY);
+            this.btDelete.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
+            this.btDelete.Click += new System.EventHandler(this.btDelete_Click);
+
+            // Button Exit (Thoát)
             this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Location = new System.Drawing.Point(550, buttonY);
+            this.btnThoat.Size = new System.Drawing.Size(buttonWidth, buttonHeight);
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
 
-            // Form1
-            this.ClientSize = new System.Drawing.Size(584, 361);
-            this.Controls.Add(this.dgvNhanVien);
-            this.Controls.Add(this.lblMa);
-            this.Controls.Add(this.tbMa);
-            this.Controls.Add(this.lblTen);
-            this.Controls.Add(this.tbTen);
-            this.Controls.Add(this.lblTuoi);
-            this.Controls.Add(this.tbTuoi);
-            this.Controls.Add(this.lblGioiTinh);
-            this.Controls.Add(this.chkNam);
-            this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.btnXoa);
+
+            // ================================
+            // Form
+            // ================================
+            this.ClientSize = new System.Drawing.Size(640, 450); // Điều chỉnh kích thước Form
+
+            // Thêm các Label vào Controls
+            this.Controls.Add(this.labelMa);
+            this.Controls.Add(this.labelTen);
+            this.Controls.Add(this.labelTuoi);
+            this.Controls.Add(this.labelNam); // Chỉ thêm label Nam nếu không muốn chữ 'Nam' là phần của CheckBox
+
+            // Thêm các control khác
+            this.Controls.Add(this.dgvEmployee);
+            this.Controls.Add(this.tBId);
+            this.Controls.Add(this.tBName);
+            this.Controls.Add(this.tBAge);
+            this.Controls.Add(this.ckGender);
+            this.Controls.Add(this.btAddNew);
+            this.Controls.Add(this.btDelete);
             this.Controls.Add(this.btnThoat);
+
             this.Name = "Form1";
-            this.Text = "Quản lý nhân viên";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvNhanVien)).EndInit();
+            this.Text = "Form1"; // Giống như trên hình
+            this.Load += new System.EventHandler(this.Form1_Load);
+
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployee)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-        #endregion
     }
 }
