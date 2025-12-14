@@ -3,84 +3,109 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 
-namespace Article26
+namespace Article27
 {
     public partial class Form1 : Form
     {
-        PictureBox pbEgg = new PictureBox();
-        System.Windows.Forms.Timer tmEgg = new System.Windows.Forms.Timer();
+        PictureBox pbBasket = new PictureBox();
 
-        int xEgg = 300;
-        int yEgg = 0;
-        int yDelta = 4;
-        bool isBroken = false;
-
-        Image imgEgg;
-        Image imgEggBroken;
+        int xBasket = 300; 
+        int yBasket = 500; 
+        int xDelta = 30;   
 
         public Form1()
         {
             InitializeComponent();
-            this.DoubleBuffered = true;
-            this.KeyPreview = true;
+
+            this.Load += Form1_Load;
             this.KeyDown += Form1_KeyDown;
+
+            this.KeyPreview = true;
+            this.DoubleBuffered = true;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.ClientSize = new Size(900, 700);
+
+            // ================================
+            // 1. Đường dẫn ảnh
+            // ================================
             string imageFolderPath = Path.Combine(Application.StartupPath, "Images");
+            string imagePath = Path.Combine(imageFolderPath, "basket.png");
 
-            try
+            // ================================
+            // 2. Setup PictureBox
+            // ================================
+            pbBasket.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbBasket.Size = new Size(120, 90);
+            pbBasket.BackColor = Color.Transparent;
+
+            this.Controls.Add(pbBasket);
+
+            pbBasket.Location = new Point(xBasket, yBasket);
+
+            // ================================
+            // 3. Load ảnh + Xoá nền trắng
+            // ================================
+            if (File.Exists(imagePath))
             {
-                imgEgg = Image.FromFile(Path.Combine(imageFolderPath, "egg_gold.png"));
-                imgEggBroken = Image.FromFile(Path.Combine(imageFolderPath, "egg_gold_broken.png"));
+                Bitmap original = new Bitmap(imagePath);
+                pbBasket.Image = RemoveBackground(original);
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Lỗi tải ảnh: {ex.Message}");
-                return;
+                pbBasket.BackColor = Color.Red;
+                MessageBox.Show("❌ Không tìm thấy ảnh:\n" + imagePath);
             }
 
-            // --- THIẾT LẬP ĐỂ XOÁ NỀN TRẮNG ---
-            pbEgg.BackColor = Color.Transparent; // Đặt màu nền trong suốt
-            pbEgg.Parent = this;                // Quan trọng: Gán Parent là Form để nhận độ trong suốt
-
-            pbEgg.SizeMode = PictureBoxSizeMode.StretchImage;
-            pbEgg.Size = new Size(100, 100);
-            pbEgg.Location = new Point(xEgg, yEgg);
-            pbEgg.Image = imgEgg;
-
-            tmEgg.Interval = 10;
-            tmEgg.Tick += tmEgg_Tick;
-            tmEgg.Start();
+            pbBasket.BringToFront();
         }
 
-        private void tmEgg_Tick(object sender, EventArgs e)
+        // =====================================================
+        // Xóa nền trắng khỏi ảnh basket.png (convert sang trong suốt)
+        // =====================================================
+        private Bitmap RemoveBackground(Bitmap bmp)
         {
-            if (isBroken) return;
+            Bitmap newBmp = new Bitmap(bmp.Width, bmp.Height);
 
-            yEgg += yDelta;
-
-            if (yEgg >= this.ClientSize.Height - pbEgg.Height)
+            for (int y = 0; y < bmp.Height; y++)
             {
-                yEgg = this.ClientSize.Height - pbEgg.Height;
-                pbEgg.Image = imgEggBroken;
-                isBroken = true;
-                tmEgg.Stop();
+                for (int x = 0; x < bmp.Width; x++)
+                {
+                    Color px = bmp.GetPixel(x, y);
+
+                    // Phát hiện màu trắng (hoặc gần trắng)
+                    if (px.R > 240 && px.G > 240 && px.B > 240)
+                    {
+                        newBmp.SetPixel(x, y, Color.FromArgb(0, px)); // alpha = 0
+                    }
+                    else
+                    {
+                        newBmp.SetPixel(x, y, px);
+                    }
+                }
             }
 
-            pbEgg.Location = new Point(xEgg, yEgg);
+            return newBmp;
         }
 
+        // =================================================
+        // Di chuyển giỏ trái phải
+        // =================================================
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Right &&
+                xBasket < this.ClientSize.Width - pbBasket.Width)
             {
-                yEgg = 0;
-                isBroken = false;
-                pbEgg.Image = imgEgg;
-                tmEgg.Start();
+                xBasket += xDelta;
             }
+            else if (e.KeyCode == Keys.Left && xBasket > 0)
+            {
+                xBasket -= xDelta;
+            }
+
+            pbBasket.Location = new Point(xBasket, yBasket);
         }
     }
 }
