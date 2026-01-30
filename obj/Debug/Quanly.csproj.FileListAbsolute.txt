@@ -1,0 +1,9 @@
+D:\Article01\Quanly\obj\Debug\Quanly.csproj.AssemblyReference.cache
+D:\Article01\Quanly\obj\Debug\Quanly.Properties.Resources.resources
+D:\Article01\Quanly\obj\Debug\Quanly.csproj.GenerateResource.cache
+D:\Article01\Quanly\obj\Debug\Quanly.csproj.CoreCompileInputs.cache
+D:\Article01\Quanly\bin\Debug\Quanly.exe.config
+D:\Article01\Quanly\bin\Debug\Quanly.exe
+D:\Article01\Quanly\bin\Debug\Quanly.pdb
+D:\Article01\Quanly\obj\Debug\Quanly.exe
+D:\Article01\Quanly\obj\Debug\Quanly.pdb
